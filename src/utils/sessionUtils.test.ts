@@ -38,8 +38,8 @@ describe('generateOptions', () => {
     expect(generateOptions('labeled', 0, ['Red', 'Blue'])).toEqual(['Red', 'Blue'])
   })
 
-  it('coordinate returns single option', () => {
-    expect(generateOptions('coordinate', 0, [])).toEqual(['Coordinate'])
+  it('coordinate returns single option with seed dash', () => {
+    expect(generateOptions('coordinate', 0, [], false, 12345678)).toEqual(['1234-5678'])
   })
 })
 

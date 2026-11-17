@@ -8,7 +8,7 @@ import type { SessionConfig, SessionType } from './types'
 import { generateOptions } from './utils/sessionUtils'
 
 function randomSeed() {
-  return Math.floor(Math.random() * 1000000)
+  return Math.floor(10000000 + Math.random() * 90000000)
 }
 
 function App() {
@@ -50,7 +50,7 @@ function App() {
     (sessionType === 'labeled' && labeledValid)
 
   function startSession() {
-    const options = generateOptions(sessionType, numberedNum, parsedLabels, neutralEnabled)
+    const options = generateOptions(sessionType, numberedNum, parsedLabels, neutralEnabled, sessionSeed)
     setSessionConfig({ type: sessionType, options })
   }
 

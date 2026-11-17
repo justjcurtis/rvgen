@@ -5,7 +5,8 @@ export function generateOptions(
   type: SessionConfig['type'],
   numberedValue: number,
   labels: string[],
-  neutralEnabled = false
+  neutralEnabled = false,
+  sessionSeed?: number
 ): string[] {
   if (type === 'yesno' || type === 'headstails' || type === 'updown') {
     return getBinaryLabels(type as BinaryVariant, neutralEnabled)
@@ -13,7 +14,10 @@ export function generateOptions(
   if (type === 'numbered') {
     return Array.from({ length: numberedValue }, (_, i) => String(i + 1))
   }
-  if (type === 'coordinate') return ['Coordinate']
+  if (type === 'coordinate') {
+    const s = String(sessionSeed ?? 'Coordinate')
+    return [s.length > 4 ? `${s.slice(0, 4)}-${s.slice(4)}` : s]
+  }
   return labels
 }
 

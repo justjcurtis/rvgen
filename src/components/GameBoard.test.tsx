@@ -1,5 +1,5 @@
 import { describe, it, expect, vi } from 'vitest'
-import { render, screen } from '@testing-library/react'
+import { render } from '@testing-library/react'
 import GameBoard from './GameBoard'
 
 vi.mock('../hooks/useImages', () => ({
@@ -16,14 +16,14 @@ vi.mock('../hooks/useImages', () => ({
 
 describe('GameBoard', () => {
   it('renders correct number of image cards', () => {
-    render(<GameBoard options={['Red', 'Blue', 'Green']} sessionType="labeled" sessionSeed={1} />)
-    expect(screen.getByText('Red')).toBeInTheDocument()
-    expect(screen.getByText('Blue')).toBeInTheDocument()
-    expect(screen.getByText('Green')).toBeInTheDocument()
+    const { getByText } = render(<GameBoard options={['Red', 'Blue', 'Green']} sessionType="labeled" sessionSeed={1} />)
+    expect(getByText('Red')).toBeInTheDocument()
+    expect(getByText('Blue')).toBeInTheDocument()
+    expect(getByText('Green')).toBeInTheDocument()
   })
 
   it('shows reveal counter', () => {
-    render(<GameBoard options={['A', 'B']} sessionType="yesno" sessionSeed={1} />)
-    expect(screen.getByText('0 of 2 revealed')).toBeInTheDocument()
+    const { getByText } = render(<GameBoard options={['A', 'B']} sessionType="yesno" sessionSeed={1} />)
+    expect(getByText('0 of 2 revealed')).toBeInTheDocument()
   })
 })
